@@ -1,0 +1,28 @@
+name: ERRSA-MC-Core
+version: '1.5.3'
+main: me.RedEagle3.eRRSAMCCore.ERRSAMCCore
+api-version: '1.21'
+
+description: Provides core commands and functionality to the ERRSA MC server.
+author: The ERRSA MC Dev Team
+website: https://campusgroups.erau.edu/errsa/craft/
+
+commands:
+  sell:
+    description: Sell diamonds from your inventory.
+    permission: ERRSAMCCore.sell
+  discord:
+    description: Get the Discord server link.
+    permission: ERRSAMCCore.discord
+  feedback:
+    description: Get the feedback form link.
+    permission: ERRSAMCCore.feedback
+  report:
+    description: Get the report form link.
+    permission: ERRSAMCCore.report
+  tutorial:
+    description: Teleport to the tutorial area.
+    permission: ERRSAMCCore.tutorial
+  resetschedule:
+    description: View the planned date of the next server reset.
+    permission: ERRSAMCCore.resetschedule
