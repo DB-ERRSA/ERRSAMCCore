@@ -1,1 +1,11 @@
+me\RedEagle3\eRRSAMCCore\Commands\MenuCommand.class
+me\RedEagle3\eRRSAMCCore\Commands\MapCommand.class
+me\RedEagle3\eRRSAMCCore\Commands\DiscordCommand.class
+me\RedEagle3\eRRSAMCCore\Commands\WebsiteCommand.class
 me\RedEagle3\eRRSAMCCore\ERRSAMCCore.class
+me\RedEagle3\eRRSAMCCore\Commands\ResetScheduleCommand.class
+me\RedEagle3\eRRSAMCCore\Commands\ReportCommand.class
+me\RedEagle3\eRRSAMCCore\Commands\SellCommand.class
+me\RedEagle3\eRRSAMCCore\Commands\FeedbackCommand.class
+me\RedEagle3\eRRSAMCCore\GUI\MenuGUI.class
+me\RedEagle3\eRRSAMCCore\Commands\TutorialCommand.class

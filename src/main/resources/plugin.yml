@@ -1,5 +1,5 @@
 name: ERRSA-MC-Core
-version: '1.5.3'
+version: '2.0.0'
 main: me.RedEagle3.eRRSAMCCore.ERRSAMCCore
 api-version: '1.21'
 
@@ -26,3 +26,12 @@ commands:
   resetschedule:
     description: View the planned date of the next server reset.
     permission: ERRSAMCCore.resetschedule
+  website:
+    description: Get the server website link.
+    permission: ERRSAMCCore.website
+  map:
+    description: View the live online world map.
+    permission: ERRSAMCCore.map
+  menu:
+    description: Opens the server menu.
+    permission: ERRSAMCCore.menu

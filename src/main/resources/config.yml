@@ -1,17 +1,18 @@
-# ERRSA MC Core Config
+# =======================================
+# ERRSA MC Core Configuration Paper v2.0
+# =======================================
 
-sell-price: 50.0    # Sell price of diamonds using the /sell command
-discord-link: https://discord.com/invite/XvKYDe3pGX
-feedback-link: https://campusgroups.erau.edu/errsa/craft/
-report-link: https://campusgroups.erau.edu/errsa/craft/
-tutorial:    # Coordinates, rotation, world, and delay time for /tutorial command
-  x: -53.5
-  y: -35
-  z: 3.5
-  yaw: -180.0
-  pitch: 0.0
-  world: "world"
-  delay-seconds: 3
-reset-schedule:    # Note the date and cycle are strings, any format can be typed such as "xx/xx/xxxx" or "August of 20XX"
+discord-link: "https://discord.com/invite/XvKYDe3pGX"
+feedback-link: "https://campusgroups.erau.edu/errsa/craft/"
+report-link: "https://campusgroups.erau.edu/errsa/craft/"
+website-link: "https://campusgroups.erau.edu/errsa/craft/"
+map-link: "https://campusgroups.erau.edu/errsa/craft/map/"
+
+# Sell price of diamonds using the /sell command
+sell-price: 50.0
+
+# The date displayed in /resetschedule
+# Note the date and cycle are strings, any format can be typed such as "xx/xx/xxxx" or "August of 20XX"
+reset-schedule:
   reset_date: "August 2028"
   reset_cycle: "3"
