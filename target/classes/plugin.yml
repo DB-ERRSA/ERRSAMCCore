@@ -1,5 +1,5 @@
 name: ERRSA-MC-Core
-version: '2.0.0'
+version: '2.1.1'
 main: me.RedEagle3.eRRSAMCCore.ERRSAMCCore
 api-version: '1.21'
 
