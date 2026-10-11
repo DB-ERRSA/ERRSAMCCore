@@ -9,3 +9,4 @@ me\RedEagle3\eRRSAMCCore\Commands\SellCommand.class
 me\RedEagle3\eRRSAMCCore\Commands\FeedbackCommand.class
 me\RedEagle3\eRRSAMCCore\GUI\MenuGUI.class
 me\RedEagle3\eRRSAMCCore\Commands\TutorialCommand.class
+me\RedEagle3\eRRSAMCCore\Listeners\AdminCommandListener.class

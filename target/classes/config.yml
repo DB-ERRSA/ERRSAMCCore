@@ -1,5 +1,5 @@
 # =======================================
-# ERRSA MC Core Configuration Paper v2.0
+# ERRSA MC Core Configuration Paper v3.0
 # =======================================
 
 discord-link: "https://discord.com/invite/XvKYDe3pGX"
@@ -16,3 +16,6 @@ sell-price: 50.0
 reset-schedule:
   reset_date: "August 2028"
   reset_cycle: "3"
+
+# Discord web-hook url for logging admin commands (kick, ban, jail, mute, etc.)
+discord-webhook: "YOUR_DISCORD_WEBHOOK_URL"

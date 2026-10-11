@@ -2,6 +2,7 @@ package me.RedEagle3.eRRSAMCCore;
 
 import me.RedEagle3.eRRSAMCCore.Commands.*;
 import me.RedEagle3.eRRSAMCCore.GUI.MenuGUI;
+import me.RedEagle3.eRRSAMCCore.Listeners.AdminCommandListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.*;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -36,6 +37,7 @@ public class ERRSAMCCore extends JavaPlugin {
         getCommand("menu").setExecutor(new MenuCommand(menuGUI));
 
         getServer().getPluginManager().registerEvents(menuGUI, this);
+        getServer().getPluginManager().registerEvents(new AdminCommandListener(this), this);
 
         getLogger().info("ERRSA MC Core has been enabled!");
     }

@@ -1,11 +1,14 @@
 name: ERRSA-MC-Core
-version: '2.1.1'
+version: '2.2.0'
 main: me.RedEagle3.eRRSAMCCore.ERRSAMCCore
 api-version: '1.21'
 
 description: Provides core commands and functionality to the ERRSA MC server.
 author: The ERRSA MC Dev Team
 website: https://campusgroups.erau.edu/errsa/craft/
+
+depend:
+  - Essentials
 
 commands:
   sell:
