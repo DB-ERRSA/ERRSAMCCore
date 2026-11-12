@@ -16,3 +16,20 @@ migration-data/
 *.key
 *.pem
 .DS_Store
+
+# IntelliJ
+.idea/
+*.iml
+
+# Maven
+target/
+**/target/
+
+# Local files
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# Legacy root source
+/src/
