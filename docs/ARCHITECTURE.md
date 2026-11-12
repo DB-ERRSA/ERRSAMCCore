@@ -1,22 +1,53 @@
-# Architecture
+# Code layout
 
 ```text
-GitHub source repository
-├── pom.xml                 parent aggregator (packaging=pom)
-├── paper/pom.xml           Paper JAR, Java 21
-│   ├── plugin.yml         command registration and dependencies
-│   ├── config.yml         links, economy, reset labels, module switches
-│   └── modules/           one default configuration per modular feature
-└── velocity/pom.xml        Velocity JAR, Java 17
-    └── src/main/resources  configuration templates
+pom.xml                       Maven parent/aggregator
+paper/
+  pom.xml                     Paper module (Java 21)
+  src/main/java/
+  src/main/resources/
+    plugin.yml                Command registration, dependencies and plugin version
+    config.yml                Root feature switches and core settings
+    modules/<module>/config.yml
+velocity/
+  pom.xml                     Velocity module (Java 17 target)
+  src/main/java/
+  src/main/resources/         Proxy configuration templates
 ```
 
-Paper entrypoint: `me.RedEagle3.eRRSAMCCore.ERRSAMCCore`. `CoreModuleManager` enables configured modules, handles per-module exceptions and disables modules in reverse order. `CoreCommandRegistrar` registers core commands. Paper has standalone command implementations and module-specific handlers.
+## Paper startup
 
-The built-in Paper features include portals, non-player End entity rerouting, PvP drop unlocking, inventory auditing, combat diagnostics, compatibility reporting, web snapshots and wiki synchronization. Core command sources reside under `.../Commands`.
+`ERRSAMCCore` is the plugin entrypoint. `CoreCommandRegistrar` handles core command registration. `CoreModuleManager` loads enabled modules in this order:
 
-For the website integration, inspect `com.errsa.webbridge` packages, including event bridge, player, quickshop and snapshot services. For combat evidence, inspect `org.errsa.combatdiag` and its packet-correlation/JSONL writer classes.
+1. End entity reroute
+2. Custom portals
+3. Inventory audit
+4. Combat diagnostics
+5. Auto-unlock PvP drops
+6. Compatibility Paper
+7. Web bridge
+8. Wiki sync
 
-Velocity combines proxy compatibility reporting, web snapshots, wiki sync and a ViaVersion updater. See `velocity/README.md` and the proxy implementation source before altering API or update behavior.
+Module configuration is written on first initialization through `saveDefaultConfig()`. Each enabled module receives `onEnable()`. Modules shut down in reverse order. A module startup exception is logged without stopping initialization of subsequent modules.
 
-No automated Java unit tests ran in the supplied Maven build log (`No tests to run`). A successful compilation does not verify server behavior or external integrations.
+The integrated WebBridge and WikiSync modules are skipped if their corresponding standalone plugins (`ERRSAWebBridge` and `ERRSAWikiSync`) are present.
+
+## Main code locations
+
+| Feature | Source package / class |
+|---|---|
+| Root lifecycle | `me.RedEagle3.eRRSAMCCore` |
+| Module manager | `...lifecycle.CoreModuleManager` |
+| Core commands | `...Commands` |
+| Custom portals | `...modules.CustomPortalModule`, `PortalAdminCommand`, `PortalPlayerListener`, `PortalRegionResolver` |
+| End rerouting | `...Listeners.EndExitRerouteListener` |
+| PvP drop unlock | `com.errsa.AutoUnlockPvPDrops` |
+| Combat diagnostics | `org.errsa.combatdiag` |
+| Inventory audit | `com.errsa.inventory` |
+| Web bridge | `com.errsa.webbridge` |
+| Compatibility reports | `com.errsa.compat.PaperReporter` |
+| Wiki sync | `edu.errsa.wikisync.WikiSyncModule` |
+
+## Build versions
+
+Paper Maven version in this snapshot: `2.5.6-combat-evidence-config`. The `plugin.yml` version is still `2.5.5-portal-pvp-fixes`; the in-game version comes from `plugin.yml`, not the JAR filename. Velocity version: `1.0.0`.

@@ -1,27 +1,23 @@
-# Velocity proxy core
+# Velocity Core
 
-The `velocity/` Maven module targets Java 17 and builds `ERRSA-Velocity-Core-1.0.0.jar` in this snapshot.
+One proxy plugin containing four modules. Maven artifact: `velocity/target/ERRSA-Velocity-Core-1.0.0.jar`.
 
-It integrates four modules:
-
-| Module | What it does | Key consideration |
+| Module | Function | Config location |
 |---|---|---|
-| `compatibility-velocity` | Reports compatibility/plugin inventory and Geyser/Floodgate/ViaVersion information | Confirm API destination and credentials |
-| `web-bridge` | Publishes proxy players and RankProgression/EventBridge sources | Compare external payload schema before production |
-| `wiki-sync` | Creates a GitHub-oriented snapshot of installed proxy plugins | Only enable for intended repository and branch |
-| `auto-via-updater` | Stages updates for **ViaVersion**, not the Velocity proxy | Confirm staging, backups and restart behavior |
+| `compatibility-velocity` | Reports plugin inventory and Geyser/Floodgate/ViaVersion information | `plugins/errsa-velocity-core/compatibility-velocity/config.properties` |
+| `web-bridge` | Publishes proxy players and RankProgression/EventBridge payloads | `plugins/errsa-velocity-core/web-bridge/config.properties` |
+| `wiki-sync` | Writes a snapshot of proxy plugins to `docs/assets/wiki-sync/velocity.json` on startup | `plugins/errsa-velocity-core/wiki-sync/config.properties` |
+| `auto-via-updater` | Stages ViaVersion updates using version checks and backup state | `plugins/errsa-velocity-core/auto-via-updater/config.toml` |
 
-Defaults and templates live in `velocity/src/main/resources/` (`core.properties`, `compatibility.properties`, `web-bridge.properties`, `wiki-sync.properties`, `config.toml`). Protect secrets before pushing.
+The main Velocity configuration is `plugins/errsa-velocity-core/config.properties`. The initial default enables compatibility reporting and WebBridge; wiki sync and the ViaVersion updater are initially disabled.
 
-**Migration** (from `velocity/README.md` in the uploaded project):
+## Previous standalone settings
 
-- `plugins/errsa-compat-velocity.properties` → `plugins/errsa-velocity-core/compatibility-velocity/config.properties`
-- `plugins/ERRSAWebBridgeVelocity/config.properties` → `plugins/errsa-velocity-core/web-bridge/config.properties`
-- `plugins/errsa-wiki-sync/config.properties` → `plugins/errsa-velocity-core/wiki-sync/config.properties`
-- `plugins/autoviaupdater/config.toml` → `plugins/errsa-velocity-core/auto-via-updater/config.toml`
+| Previous path | Core path |
+|---|---|
+| `plugins/errsa-compat-velocity.properties` | `compatibility-velocity/config.properties` |
+| `plugins/ERRSAWebBridgeVelocity/config.properties` | `web-bridge/config.properties` |
+| `plugins/errsa-wiki-sync/config.properties` | `wiki-sync/config.properties` |
+| `plugins/autoviaupdater/config.toml` | `auto-via-updater/config.toml` |
 
-Back up the proxy and the prior configs. Remove the four integrated standalone plugin JARs, but keep ViaVersion itself. Start with conservative defaults, verify reports and GitHub behavior on Test, and enable auto-updating only after checking staging/rollback.
-
-## Original source documentation
-
-See `velocity/README.md` for extra integration notes and compatibility caveats.
+New paths in the right column are relative to `plugins/errsa-velocity-core/`. Compatibility and website payloads retain the source integration's original data formats. `auto-via-updater` updates ViaVersion, not Velocity.

@@ -1,20 +1,32 @@
-# ERRSA-MC-Core
+# ERRSA MC Core
 
-Two plugins, one source repository: the Paper server core and Velocity proxy core for the ERRSA Minecraft network.
+ERRSA's shared Paper and Velocity plugin. Core holds the features we maintain ourselves instead of running them as separate plugins.
 
-**Build:** `mvn clean verify` from the repository root (JDK 21, Maven installed). The deployable artifacts are `paper/target/ERRSA-MC-Core-*.jar` and `velocity/target/ERRSA-Velocity-Core-*.jar` (do not deploy `original-*` jars).
+| Component | Contents |
+|---|---|
+| `paper/` | Core commands, custom portals, End entity rerouting, PvP drops, combat diagnostics, inventory audit, compatibility reporting, website snapshots, wiki sync |
+| `velocity/` | Compatibility reporting, website bridge, wiki sync, ViaVersion updater |
 
-**Download without building locally:** open [Actions](https://github.com/DB-ERRSA/ERRSAMCCore/actions/workflows/build.yml), select the latest successful run, and download the artifact ZIP containing both JARs. For tagged releases, use [Releases](https://github.com/DB-ERRSA/ERRSAMCCore/releases).
+## Reference
 
-## Documentation
+- [Paper modules](docs/PAPER.md): what is included and where it lives
+- [Commands](docs/COMMANDS.md): syntax, purpose, and permissions
+- [Configuration](docs/CONFIG.md): root settings and module defaults
+- [Velocity](docs/VELOCITY.md): integrated proxy features and paths
+- [Architecture](docs/ARCHITECTURE.md): startup, configuration and source layout
+- [Builds](docs/BUILDS.md): Maven outputs, GitHub artifacts and releases
 
-- [Quick start, installing and rollback](docs/GETTING-STARTED.md)
-- [Paper module reference](docs/PAPER-MODULES.md)
-- [Paper commands and permissions](docs/COMMANDS-AND-PERMISSIONS.md)
-- [Configuration reference](docs/CONFIGURATION.md)
-- [Velocity core](docs/VELOCITY.md)
-- [Architecture and integration](docs/ARCHITECTURE.md)
-- [Builds, releases, GitHub upload](docs/RELEASING.md)
-- [Troubleshooting](docs/TROUBLESHOOTING.md)
+## Build
 
-> Check `docs/KNOWN-ISSUES.md` before deploying. Do not commit actual production credentials or database snapshots.
+From the repository root:
+
+```powershell
+mvn clean package
+```
+
+| Output | Runtime |
+|---|---|
+| `paper/target/ERRSA-MC-Core-2.5.6-combat-evidence-config.jar` | Paper, Java 21 |
+| `velocity/target/ERRSA-Velocity-Core-1.0.0.jar` | Velocity, Java 17+ |
+
+Development JARs: [GitHub Actions](https://github.com/DB-ERRSA/ERRSAMCCore/actions). Versioned builds: [Releases](https://github.com/DB-ERRSA/ERRSAMCCore/releases).
