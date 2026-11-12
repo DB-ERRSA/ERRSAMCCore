@@ -1,0 +1,42 @@
+# Combat Diagnostics | Evidence-only PvP investigation (v0.5.1 logic)
+# No bans, cancellations or damage changes. Evidence requires staff interpretation.
+# Commands: /cdiag health | packet | incidents | watch | mark | reload.
+
+# Upper bound for manual /cdiag watch <player> <minutes>.
+max-watch-minutes: 30
+# Capture one position sample every N server ticks (20 ticks ~= 1 second at 20 TPS).
+sample-every-ticks: 4
+# Bound RAM used by asynchronous JSONL evidence writing.
+max-queued-records: 10000
+# Retention for files in combat-diagnostics/logs/.
+retention-days: 7
+# Staff review threshold for current server hitbox distance, NOT client reach.
+review-distance-blocks: 3.2
+
+automatic:
+  enabled: true # Enable automatic incident capture; never enforces punishment.
+  capture-console-alerts: true # Best effort for Themis/ExploitFixer logger text.
+  pre-seconds: 12 # Buffered evidence before a trigger.
+  post-seconds: 8 # Additional evidence after a trigger.
+  cooldown-seconds: 20 # Prevent repeated incident alerts for the same cause.
+  max-buffered-players: 100 # Bound memory for online player samples.
+  trigger-hit-distance: 3.6 # Advisory server-side distance threshold in blocks.
+  rapid-firework-click-ms: 160 # Flag unusually quick inventory-to-firework use.
+  hit-dedup-ms: 40 # Suppress duplicate hit paths observed close together.
+  notify-staff: true # Notify online staff with errsa.combatdiag.staff permission.
+
+discord:
+  enabled: false # Leave false unless you want limited alert notifications.
+  webhook-url: "" # Private Discord webhook. Keep out of source control and ZIPs.
+  min-seconds-between-alerts: 30 # Rate limit outgoing notifications.
+
+packet-observation:
+  enabled: true # Requires ProtocolLib 5.x; otherwise Bukkit-only records.
+  match-window-ms: 400 # Max age of packet receipt relative to damage event.
+  reorder-tolerance-ms: 50 # Allow small reversed receipt/damage timestamp order.
+  correlation-delay-ticks: 2 # Wait for packet callbacks queued to the main thread.
+  require-match-for-distance-trigger: false # True suppresses uncorrelated distance triggers.
+  # Quality values: packet-correlated / timing-ambiguous / uncorrelated.
+  # Packet positions are captured on the MAIN-THREAD PROCESSING tick,
+  # not at exact network receipt time; damage positions are captured separately.
+  # None of these measurements are rollback or lag-compensated evidence.

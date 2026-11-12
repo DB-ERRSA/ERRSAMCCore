@@ -1,0 +1,108 @@
+# Custom Portals | Replaces the previous Custom_Portal.sk.
+# Create/edit staff portals with /coreportal; restart after manual YAML edits.
+# WorldGuard trigger needs a matching region name in the stated world.
+# The six preconfigured destinations are intentionally unchanged.
+# All delay values are in server ticks (20 ticks ~= 1 second at 20 TPS).
+# Trigger type: cuboid or worldguard (requires WorldGuard installed).
+# New portals can be added using /coreportal commands.
+settings:
+  # Periodic scan fallback; 1 tick helps narrow regions. Movement events are also monitored.
+  check-interval-ticks: 1
+  default-delay-ticks: 20
+  cooldown-ticks: 40
+  # Cancel a pending delayed teleport if the player leaves its portal region.
+  cancel-on-exit: true
+  entry-sound: ENTITY_EXPERIENCE_ORB_PICKUP
+  teleport-sound: ENTITY_ENDERMAN_TELEPORT
+  cancel-sound: ITEM_AXE_STRIP
+  # Spawn particles when teleporting; arrival effects can be delayed to reach clients.
+  particles-enabled: true
+  arrival-effects-delay-ticks: 2
+  particle: HAPPY_VILLAGER
+  particle-count: 30
+  # Prevent teleport loops or unintended activation immediately after /warp.
+  warp-bypass-ticks: 40
+# Portal IDs can be changed only if staff commands and references are updated.
+# Each portal supports enabled, trigger, region, world, delay-ticks,
+# destination (world/x/y/z/yaw/pitch), enter-message and forward-velocity.
+portals:
+  tutorial-dojo-entrance:
+    enabled: true
+    trigger: worldguard
+    region: tutorial_dojo_entrance
+    world: world
+    destination:
+      world: world
+      x: -53.5
+      y: -35
+      z: 4.5
+      yaw: -180
+      pitch: 0
+    enter-message: "&aEntering Tutorial Dojo..."
+  tutorial-dojo-exit:
+    enabled: true
+    trigger: worldguard
+    region: tutorial_dojo
+    world: world
+    destination:
+      world: world
+      x: 59.5
+      y: 15
+      z: 15.5
+      yaw: -180
+      pitch: 0
+    enter-message: "&cLeaving Tutorial Dojo..."
+  legacy-lake-entrance:
+    enabled: true
+    trigger: worldguard
+    region: legacy_lake_entrance
+    world: world
+    delay-ticks: 0 # Immediate teleport for narrow Legacy Lake entrance.
+    destination:
+      world: world
+      x: 0.5
+      y: -34
+      z: -1.5
+      yaw: 0
+      pitch: 0
+    enter-message: "&aEntering Legacy Lake..."
+  legacy-lake-exit:
+    enabled: true
+    trigger: worldguard
+    region: legacy_lake
+    world: world
+    destination:
+      world: world
+      x: 8.5
+      y: 0
+      z: 60.5
+      yaw: 180
+      pitch: 0
+    enter-message: "&cLeaving Legacy Lake..."
+    forward-velocity: 2.5 # Push player forward after Legacy Lake exit.
+  guild-hall-entrance:
+    enabled: true
+    trigger: worldguard
+    region: guild_hall_entrance
+    world: world
+    destination:
+      world: world
+      x: 59.5
+      y: -53
+      z: 31.5
+      yaw: -90
+      pitch: -2
+    enter-message: "&aEntering Guild Hall..."
+  guild-hall-exit:
+    enabled: true
+    trigger: worldguard
+    region: guild_hall_exit
+    world: world
+    destination:
+      world: world
+      x: -39.5
+      y: 11
+      z: -33.5
+      yaw: 0
+      pitch: 10
+    enter-message: "&cLeaving Guild Hall..."

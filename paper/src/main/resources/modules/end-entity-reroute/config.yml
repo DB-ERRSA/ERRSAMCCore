@@ -1,0 +1,13 @@
+# End Entity Reroute | Only non-player entities exiting the End.
+# Keep root modules.end-entity-reroute.enabled true to start this module.
+end-exit-reroute:
+  enabled: true # Additional module-local switch.
+  safe-destination:
+    world: world # Existing loaded destination world name.
+    x: 772 # Destination X coordinate.
+    y: 64.0 # Destination Y coordinate.
+    z: 1533 # Destination Z coordinate.
+    yaw: 0.0 # Facing direction in degrees.
+    pitch: 0.0 # Vertical facing direction in degrees.
+  search-radius: 8 # Look for a safe landing spot near destination if blocked.
+  debug: false # Log extra diagnostics during testing; disable for normal play.

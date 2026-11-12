@@ -1,0 +1,6 @@
+# ERRSA Velocity / ViaVersion updater
+check-on-startup = true
+delay-seconds = 5
+snapshot = false
+# Replace an already staged update at the next proxy startup. It loads one restart later.
+auto-install = true

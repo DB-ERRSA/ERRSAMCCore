@@ -1,0 +1,42 @@
+# ERRSA MC Core | Main Settings
+# Switches below apply at startup. Restart Paper after changing them.
+# Each enabled feature has its own config.yml in the matching folder.
+# Disable integrations you do not want running on the Testing Server.
+modules:
+  inventory-audit:
+    enabled: true # Records suspicious inventory changes; does not punish players.
+  combat-diagnostics:
+    enabled: true # Evidence-only PvP review; does not block attacks.
+  auto-unlock-pvp-drops:
+    enabled: true # Cooperates with GriefPrevention and PvPToggle.
+  compatibility-paper:
+    enabled: true # Sends reports to your bot. Check test/production endpoint.
+  web-bridge:
+    enabled: true # Writes website/Dynmap JSON snapshots.
+  wiki-sync:
+    enabled: true # WARNING: may publish live GitHub content on startup.
+  end-entity-reroute:
+    enabled: true # Moves non-player End exit arrivals; players remain unaffected.
+  custom-portals:
+    enabled: true # WorldGuard/cuboid staff portals; replaces portal Skript.
+
+# Public links displayed in Core commands and menus.
+links:
+  discord: "https://discord.com/invite/XvKYDe3pGX"
+  feedback: "https://forms.fillout.com/t/s2oKYJtMGDus"
+  report: "https://forms.fillout.com/t/eRqvr1KnD4us"
+  website: "https://errsa-minecraft-handbook.onrender.com/"
+  map: "https://errsa-minecraft-handbook.onrender.com/map.html"
+
+# Diamond sell command value, in server economy dollars.
+economy:
+  diamond-sell-price: 50.0
+
+# Display text for /resetschedule; these are labels, not automated reset times.
+reset:
+  date: "August 2027"
+  cycle: "3"
+
+# Paste secrets in the SERVER config only. Never commit or share the webhook.
+moderation:
+  discord-webhook: ""

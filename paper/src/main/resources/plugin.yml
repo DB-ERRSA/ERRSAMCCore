@@ -1,0 +1,76 @@
+name: ERRSA-MC-Core
+version: '2.5.5-portal-pvp-fixes'
+main: me.RedEagle3.eRRSAMCCore.ERRSAMCCore
+api-version: '1.21'
+
+description: Provides core commands and functionality to the ERRSA MC server.
+author: The ERRSA MC Dev Team
+website: https://campusgroups.erau.edu/errsa/craft/
+
+depend:
+  - Essentials
+softdepend: [ProtocolLib, GriefPrevention, PvpToggle, floodgate, EventBridge, QuickShop-Hikari, QuickShop, dynmap, LuckPerms]
+
+commands:
+  errsawebbridge:
+    description: Show WebBridge status or force a snapshot sync.
+    permission: errsawebbridge.admin
+  inventoryaudit:
+    aliases: [iaudit]
+    description: Inventory audit status and module reload
+    permission: inventoryaudit.admin
+  combatdiag:
+    aliases: [cdiag]
+    description: Combat diagnostics incident capture
+    permission: errsa.combatdiag.staff
+  sell:
+    description: Sell diamonds from your inventory.
+    permission: ERRSAMCCore.sell
+  discord:
+    description: Get the Discord server link.
+    permission: ERRSAMCCore.discord
+  feedback:
+    description: Get the feedback form link.
+    permission: ERRSAMCCore.feedback
+  report:
+    description: Get the report form link.
+    permission: ERRSAMCCore.report
+  tutorial:
+    description: Teleport to the tutorial area.
+    permission: ERRSAMCCore.tutorial
+  resetschedule:
+    description: View the planned date of the next server reset.
+    permission: ERRSAMCCore.resetschedule
+  website:
+    description: Get the server website link.
+    permission: ERRSAMCCore.website
+  map:
+    description: View the live online world map.
+    permission: ERRSAMCCore.map
+  menu:
+    description: Opens the server menu.
+    permission: ERRSAMCCore.menu
+  coreportal:
+    description: Configure custom portal regions and destinations.
+    usage: /coreportal help
+    permission: errsa.core.portals.admin
+  endexit:
+    description: Set the non-player End return-portal destination.
+    usage: /endexit set
+    aliases: [shulkerbay]
+    permission: ERRSAMCCore.endexit
+
+permissions:
+  errsawebbridge.admin:
+    default: op
+  inventoryaudit.admin:
+    default: op
+  errsa.combatdiag.staff:
+    default: op
+  ERRSAMCCore.endexit:
+    description: Set the non-player End return-portal destination.
+    default: op
+
+  errsa.core.portals.admin:
+    description: Manage configurable Core portals.
+    default: op

@@ -1,0 +1,8 @@
+# Compatibility Paper | Sends compatibility reports to the ERRSA bot.
+# Configure the TEST endpoint before enabling on Testing Server.
+# Endpoint must be HTTPS and accept the report format expected by your bot.
+endpoint: "https://YOUR-BOT-HOST/compat/report"
+# Must match COMPAT_REPORT_SECRET on the receiving bot; never share this secret.
+secret: "REPLACE_WITH_LONG_RANDOM_SECRET"
+# Time between scheduled reports in seconds (300 = 5 minutes).
+report-interval-seconds: 300

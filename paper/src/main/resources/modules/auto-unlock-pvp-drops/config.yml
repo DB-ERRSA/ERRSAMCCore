@@ -1,0 +1,20 @@
+# Auto-Unlock PvP Drops
+# This module integrates PvPToggle and GriefPrevention.
+# The module enable switch remains in ERRSA-MC-Core/config.yml.
+
+conditions:
+  # Only unlock when a player killed the victim (not mobs, void or falls).
+  require-player-killer: true
+
+  # Check that PvPToggle reports the victim had PvP enabled.
+  # Keep true for normal ERRSA PvP rules.
+  require-victim-pvp-enabled: true
+
+unlock:
+  # Retry after GriefPrevention records the death. 20 ticks = 1 second.
+  # The original behavior was 5, 20 and 40 ticks.
+  retry-delays-ticks: [5, 20, 40]
+
+logging:
+  # Write one message per successful retry to the server log.
+  successful-unlocks: true

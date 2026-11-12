@@ -1,0 +1,8 @@
+# Wiki Sync | Publishes server plugin/permission inventory to GitHub.
+# WARNING: Enabling on Testing can overwrite the production wiki snapshot.
+# Use a separate testing branch/repository until the integration is verified.
+github:
+  owner: "" # GitHub owner/user or organization.
+  repo: "" # Destination repository name.
+  branch: "main" # Existing target branch; use a dedicated testing branch.
+  token: "" # Personal access token with minimum necessary permissions; private.
