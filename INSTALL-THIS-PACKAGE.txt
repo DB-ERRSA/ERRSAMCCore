@@ -1,0 +1,4 @@
+COPY THESE FILES into C:\Users\Stephen\IdeaProjects\ERRSA-MC-Core-GitHub
+(merge with existing files; do not replace paper/ and velocity/).
+Read docs/RELEASING.md.
+This archive is an overlay: GitHub Actions, .gitignore, README and documentation. It does not contain the plugin source code or JARs.

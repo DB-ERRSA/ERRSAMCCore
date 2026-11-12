@@ -1,0 +1,18 @@
+# IDE and Maven outputs
+.idea/
+*.iml
+**/target/
+# Local instances, snapshots, credentials, logs
+migration-data/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+*.log.*
+.env
+.env.*
+**/secrets.yml
+**/secrets.properties
+*.key
+*.pem
+.DS_Store

@@ -1,0 +1,43 @@
+name: Build Paper and Velocity JARs
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Build both Maven modules
+        run: mvn -B --no-transfer-progress clean verify
+      - name: Prepare deployable JAR files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          for module in paper velocity; do
+            mapfile -t jars < <(find "$module/target" -maxdepth 1 -type f -name '*.jar' ! -name 'original-*' ! -name '*-sources.jar' ! -name '*-javadoc.jar' | sort)
+            if [ "${#jars[@]}" -ne 1 ]; then
+              echo "Expected exactly one deployable JAR in $module/target; found ${#jars[@]}" >&2
+              exit 1
+            fi
+            cp "${jars[0]}" dist/
+          done
+          test "$(find dist -maxdepth 1 -name '*.jar' | wc -l)" -eq 2
+          ls -lh dist/
+      - name: Upload both JARs
+        uses: actions/upload-artifact@v4
+        with:
+          name: ERRSA-Core-dev-${{ github.run_number }}
+          path: dist/*.jar
+          if-no-files-found: error
+          retention-days: 30
